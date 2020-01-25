@@ -12,9 +12,9 @@ tags:
 
 - [“外部尺寸”block元素的流动性示意实例](https://demo.cssworld.cn/3/2-3.php)
 
-- min-width/max-width 和 min-height/max-height
+- [实现凹凸效果的示例](https://demo.cssworld.cn/3/2-6.php)
 
-- 内联元素
+- [最大宽度示例：平滑滚动](https://demo.cssworld.cn/3/2-7.php)
 
 ## 块级元素
 
@@ -84,3 +84,90 @@ tags:
   /*该div最近的具有定位特性的祖先元素的宽度是1000px, 则这个<div>元素的宽度是（1000 - 20 - 20）= 960px*/
   ```
   - 格式化宽度具有完全的流体性
+
+  ### 内部尺寸
+
+> 元素的尺寸由内部的元素决定，而非外部的容器决定，**一个元素里面内容，宽度为0，则其应用的是“内部尺寸”**
+
+  - 包裹性
+
+> inline-block属性是包裹性最好的例子，具体表现为：**内容越多宽度越宽（内部尺寸特性），内容足够多，在容器的宽度处换行(*自适应性，永远小于包裹块容器的尺寸*)**
+
+  - 首选最小宽度
+
+  1. 东亚文字最小宽度为每个字的宽度
+  2. 西方文字最小宽度由特定的连续的英文字符单元决定
+  3. 图片最小宽度为该元素内容本身的宽度
+
+  [实现凹凸效果的示例](https://demo.cssworld.cn/3/2-6.php)
+
+  - 最大宽度
+
+  > 元素可以有的最大宽度，若内部无块级元素或块级元素没有设定宽度值，“最大宽度”是最大的连续内联盒子的宽度
+
+  例： 
+  ```html
+  <div>
+    "我是文本"
+    <span>我是span</span>
+    <button>按钮</button>
+    <img src="123" />
+    <br>
+    我是下一行
+  </div>
+  ```
+  在*最大宽度模式下*显示效果为：
+  “我是文本”我是span<button>按钮</button><img src='123'>
+
+  [最大宽度示例：平滑滚动](https://demo.cssworld.cn/3/2-7.php)
+
+  ### width值作用的细节
+
+  > **width值作用在内在盒子上**
+
+  - content-box
+  - padding-box
+  - border-box
+  - margin box无对应的CSS关键字名称
+
+  **width 作用在content-box上**
+
+  ### 宽度分离原则
+
+  > CSS中的width属性不与影响宽度的padding/border 共存，
+  
+  也就是不能出现以下结构:
+  ```CSS
+    .box {
+      width: 100px;
+      border: 1px solid;
+    }
+  ```
+
+  应写成以下结构
+  ```CSS
+  .father {
+    width: 180px;
+  }
+  .son {
+    margin: 0 20px;
+    padding: 20px;
+    border: 1px solid;
+  }
+  ```
+
+  ### box-sizing属性
+
+  > box-sizing属性改变width的作用细节
+
+   - box-sizing: content-box 默认值
+   - box-sizing: padding-box Firefox曾经支持
+   - box-sizing: border-box 全线支持
+
+   **box-sizing的发明初衷是解决替换元素宽度自适应的问题**
+
+   ```css
+   input, textarea, img, video, object {
+     box-sizing: border-box;
+   }
+   ```
