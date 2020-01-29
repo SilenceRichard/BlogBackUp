@@ -16,6 +16,8 @@ tags:
 
 - [最大宽度示例：平滑滚动](https://demo.cssworld.cn/3/2-7.php)
 
+- [height: 100%示例, 绝对定位与非绝对定位的区别](https://demo.cssworld.cn/3/2-11.php)
+
 ## 块级元素
 
 ### 概述
@@ -171,3 +173,46 @@ tags:
      box-sizing: border-box;
    }
    ```
+
+  ### Height: 100%
+
+   - 在**非绝对定位**中相对于content-box计算
+   - 在**绝对定位**中相对于padding-box计算
+
+  [height: 100%示例](https://demo.cssworld.cn/3/2-11.php)
+
+  ## min-width/min-height,max-width/max-height
+
+   - 初始值均为"**none**"
+   - 权重**超越important**
+
+   ```html
+    <img src="1.jpg" style="width:356px !important;">
+   ```
+
+   ```css
+    img { max-width: 256px; }
+   ```
+
+   该img为256px
+
+   - 超越最大（min > max)
+
+   ```css
+    .container {
+      min-width: 1200px;
+      max-width: 1000px;
+    }
+    /* 该类元素为 1200px */
+   ```
+
+   [利用max/min width/height实现的元素滑动效果](https://demo.cssworld.cn/3/3-2.php)
+
+   ## 内联元素的“幽灵空白节点”
+
+  ```html
+    <div>
+      <span></span>
+    </div>
+  ```
+  选中span，高度18像素，可假象为内部有一“幽灵空白节点”
