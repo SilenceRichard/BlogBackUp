@@ -49,3 +49,16 @@ img { display: block }
 <img src="1.jpg">
 ```
 该 img block, 宽度没有100%容器
+
+### 替换元素和非替换元素的区别
+
+- src属性
+> \<img> src属性缺省，在IE下，有一个默认28 * 30 px的占位内容，在Firefox下，与一般的行内元素<span>表现相同，在chrome下为0 * 0的图片
+- content属性，[利用content属性实现图片变化效果实例](https://demo.cssworld.cn/4/1-4.php)
+> **content生成的内容为替换元素**
+    
+  
+  1. content生成的文本无法选中， 无法SEO
+  2. 不能左右:empty伪类，（即使content有内容，标签内为空，也会为empty）
+
+  ## content内容生成
