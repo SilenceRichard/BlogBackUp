@@ -17,3 +17,16 @@ tags:
 ```
 
 - 众里寻她千百度，解决！ [阿里云ss搭建报错](https://blog.csdn.net/weixin_30655569/article/details/99208840)
+
+### 2020.2.1 坑
+
+> 用了五天的小飞机突然上不了guge了～
+
+排查原因： **端口封禁**（🍅🧱需谨慎啊！），[参考博文](https://www.flyzy2005.com/fan-qiang/tcp-blocked/)
+```linux
+ssh -v -p [端口号] 用户名@服务器地址
+```
+
+```docker
+docker run -d -p 1984:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p [端口号] -k [密码] -m aes-256-cfb
+```
