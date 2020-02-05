@@ -62,7 +62,7 @@ tags:
 
 ```bash
 # 安装ts相关依赖
-yarn add @types/react @types/react-dom typescript awesome-typescript-loader
+yarn add @types/react @types/react-dom typescript typescript-loader
 ```
 
 # 放入大象
@@ -72,24 +72,33 @@ yarn add @types/react @types/react-dom typescript awesome-typescript-loader
 ```js
 // 关键配置， 新增loader
 {
-  test: /\.tsx?$/,
-  loader: 'awesome-typescript-loader',
+  test: /\.ts(x?)$/,
+  exclude: /node_modules/,
+  use: [
+    {
+      loader: 'ts-loader',
+    },
+  ],
 },
 ```
 
 # 关冰箱门
 
-在项目中创建.tsx/.ts文件，使用typescript开发
+在项目中创建.tsx/.ts 文件，使用 typescript 开发
 
 # 装饰冰箱
 
-## 在eslint中配置ts
+## 在 eslint 中配置 ts
+
 [参考文章](https://juejin.im/entry/5a156adaf265da43231aa032)
+
 ```bash
 # 安装依赖
 yarn add @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```
+
 配置.eslintrc.js
+
 ```js
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
@@ -103,4 +112,26 @@ yarn add @typescript-eslint/parser @typescript-eslint/eslint-plugin
     ]
   }
 ```
+
+### sourcemap-loader
+
+> 在旧的 js 项目的工程中，有一些 import 文件，若 import 的内容改为了 ts 文件，则开发时编译报错
+
+引入 source-map-loader
+
+```bash
+yarn add source-map-loader
+```
+
+```js
+  // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+  {
+    enforce: 'pre',
+    test: /\.js$/,
+    loader: 'source-map-loader',
+  },
+```
+
+在 webpack.config.js 中配置 source-map-loader
+
 over~
