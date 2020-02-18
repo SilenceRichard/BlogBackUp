@@ -2,7 +2,8 @@
 title: 在Create-React-APP项目中引入TypeScript
 date: 2020-02-03 19:19:16
 tags:
-  - 工具链
+  - 工程化
+  - webpack
 ---
 
 [参考博文](https://www.cnblogs.com/vvjiang/p/11944912.html)
